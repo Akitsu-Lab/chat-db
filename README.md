@@ -4,7 +4,7 @@
 
 
 <p align="center">
-    <img src="https://img.shields.io/badge/-MySQL-669966.svg?logo=mysql&style=flat">
+    <img src="https://img.shields.io/badge/-MySQL-white.svg?logo=mysql&style=flat">
 </p>　
 
 ---
