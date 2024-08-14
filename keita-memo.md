@@ -1,0 +1,36 @@
+
+# 使い方
+
+## コンテナ起動
+
+```sh
+docker-compose up --build -d
+```
+
+ローカルホスト名はIPアドレスで入れないと接続できない
+
+```sh
+mysql -h 127.0.0.1 -P 3306 -u root -p
+```
+
+## コンテナ内に入ってMySQLに接続する
+
+```sh
+docker exec -it <コンテナ名> bash
+mysql -u root -p
+```
+
+## コンテナ止める
+
+```sh
+docker-compose down -v
+```
+
+# DB初期化方法
+
+コンテナの/docker-entrypoint-initdb.d
+にSQLファイルを入れると名前の昇順でSQLが実行される
+
+# DBeaverでMySQL接続時のエラー
+
+https://okuyan-techdiary.com/mysql-dbeaver-error/
