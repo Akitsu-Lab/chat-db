@@ -10,7 +10,7 @@ docker-compose up --build -d
 ローカルホスト名はIPアドレスで入れないと接続できない
 
 ```sh
-mysql -h 127.0.0.1 -P 3306 -u root -p
+mysql -h 127.0.0.1 -P 13306 -u root -p
 ```
 
 ## コンテナ内に入ってMySQLに接続する
