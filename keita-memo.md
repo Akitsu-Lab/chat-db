@@ -7,8 +7,12 @@
 docker-compose up --build -d
 ```
 
-ローカルホスト名はIPアドレスで入れないと接続できない
+ローカルホスト名はIPアドレスで入れないと接続できないかも。WindowsのWSLの場合はWSLは別ネットワークだからかもしれない。
 
+```sh
+mysql -h localhost -P 3306 -u root -p
+```
+or
 ```sh
 mysql -h 127.0.0.1 -P 3306 -u root -p
 ```
