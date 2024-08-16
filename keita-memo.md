@@ -4,7 +4,7 @@
 ## コンテナ起動
 -dはバックグラウンド
 ```sh
-docker-compose up --build -d
+docker compose up --build -d
 ```
 
 ローカルホスト名はIPアドレスで入れないと接続できないかも。WindowsのWSLの場合はWSLは別ネットワークだからかもしれない。
@@ -27,7 +27,7 @@ mysql -u root -p
 ## コンテナ止める
 
 ```sh
-docker-compose down -v
+docker compose down -v
 ```
 
 # DB初期化方法
