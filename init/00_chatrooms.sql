@@ -1,4 +1,4 @@
-CREATE TABLE db.chatrooms(
+CREATE TABLE chatrooms(
   room_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   room_name VARCHAR(30) NOT NULL
   );
