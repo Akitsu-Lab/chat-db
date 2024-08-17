@@ -1,4 +1,4 @@
-CREATE TABLE db.messages(
+CREATE TABLE messages(
   message_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   room_id INT NOT NULL,  
   user_id INT NOT NULL,

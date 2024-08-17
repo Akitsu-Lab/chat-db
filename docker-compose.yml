@@ -1,0 +1,30 @@
+services:
+
+  api:
+    build:
+      context: ../chat-api/
+      dockerfile: Dockerfile
+    environment:
+      DB_HOST: "db"
+      DB_DATABASE: "chat"
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+  db:
+    image: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: chat
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    volumes:
+      - ./init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10

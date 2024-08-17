@@ -1,4 +1,4 @@
-CREATE TABLE db.chatroom_users(
+CREATE TABLE chatroom_users(
   chatroom_users_id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
   room_id INT NOT NULL, 
   user_id INT NOT NULL,
