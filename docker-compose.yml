@@ -1,17 +1,41 @@
 services:
 
+  ui:
+    image: node:20.16.0-alpine
+    volumes:
+      - ../chat-ui:/app
+    ports:
+      - "3000:3000"
+    environment:
+      API_HOST: "api"
+      CHOKIDAR_USEPOLLING: true # hot reload
+    command:
+      sh -c "cd /app && npm install && npm run dev"
+    depends_on:
+      api:
+        condition: service_healthy
+
   api:
-    build:
-      context: ../chat-api/
-      dockerfile: Dockerfile
+    image: gradle:8.8-jdk21-alpine
+    ports:
+      - "8080:8080"
     environment:
       DB_HOST: "db"
       DB_DATABASE: "chat"
+    volumes:
+      - ../chat-api:/app
     depends_on:
       db:
         condition: service_healthy
-    ports:
-      - "8080:8080"
+    command:
+      sh -c "cd /app && gradle bootJar && java -jar /app/build/libs/chat-api.jar"
+    healthcheck:
+      test: sh -c "apk add curl && curl -f http://localhost:8080/chatrooms"
+      start_period: 10s
+      interval: 3s
+      timeout: 10s
+      retries: 20
+
   db:
     image: mysql
     restart: always
@@ -26,5 +50,7 @@ services:
       - ./init:/docker-entrypoint-initdb.d
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      timeout: 20s
+      start_period: 10s
+      interval: 3s
       retries: 10
+      timeout: 10s

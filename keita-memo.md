@@ -1,10 +1,21 @@
 
 # 使い方
 
+## DB-API-UI起動
+
+```shell
+docker compose up --build -d
+```
+
+終わったら
+```shell
+docker compose down -v
+```
+
 ## コンテナ起動
 -dはバックグラウンド
 ```sh
-docker compose up --build -d
+docker compose up --build -d (service名 e.g. db, api, ui)
 ```
 
 ローカルホスト名はIPアドレスで入れないと接続できないかも。WindowsのWSLの場合はWSLは別ネットワークだからかもしれない。
@@ -20,7 +31,7 @@ mysql -h 127.0.0.1 -P 3306 -u root -p
 ## コンテナ内に入ってMySQLに接続する
 
 ```sh
-docker exec -it <コンテナ名> bash
+docker compose exec -it <service名> bash
 mysql -u root -p
 ```
 
