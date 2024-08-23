@@ -1,13 +1,12 @@
-CREATE TABLE chatroom_users (
-    chatroom_users_id SERIAL NOT NULL PRIMARY KEY,
-    room_id           INT    NOT NULL,
-    user_id           INT    NOT NULL,
-    FOREIGN KEY (room_id) REFERENCES chatrooms (room_id),
-    FOREIGN KEY (user_id) REFERENCES users (user_id)
+CREATE TABLE chatroom_users
+(
+    chatroom_users_id SERIAL PRIMARY KEY,
+    room_id           INT REFERENCES chatrooms(room_id) ON DELETE CASCADE,
+    user_id           INT REFERENCES users(user_id) ON DELETE CASCADE,
+    joined_at         TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 INSERT INTO chatroom_users
     (room_id, user_id)
-VALUES
-    (1, 1),
-    (1, 2);
+VALUES (1, 1),
+       (1, 2);
