@@ -18,21 +18,15 @@ docker compose down -v
 docker compose up --build -d (service名 e.g. db, api, ui)
 ```
 
-ローカルホスト名はIPアドレスで入れないと接続できないかも。WindowsのWSLの場合はWSLは別ネットワークだからかもしれない。
-
 ```sh
-mysql -h localhost -P 3306 -u root -p
-```
-or
-```sh
-mysql -h 127.0.0.1 -P 3306 -u root -p
+psql -h localhost -p 5432 -U chat_owner -d chat
 ```
 
-## コンテナ内に入ってMySQLに接続する
+## コンテナ内に入ってPostgreSQLに接続する
 
 ```sh
 docker compose exec -it <service名> bash
-mysql -u root -p
+psql -h localhost -p 5432 -U chat_owner -d chat
 ```
 
 ## コンテナ止める
@@ -50,18 +44,14 @@ docker compose down -v
 
 データベース確認
 ```sh
-show databases;
+\l
 ```
 データベース選択
 ```sh
-USE db
+\c chat
 ```
 
 テーブル取得
 ```sh
-show tables;
+\dt
 ```
-
-# DBeaverでMySQL接続時のエラー
-
-https://okuyan-techdiary.com/mysql-dbeaver-error/
